@@ -1,1 +1,9 @@
 <h1>Lista de Todos</h1>
+<ul>
+    {{#each todoList}}
+        <li>Nome: {{this}}</li>
+    {{/each}}
+</ul>
+<form action="/" method="POST">  
+Tarefa: <input type="text" name="nome"> 
+<input type="submit" value="Submit">  

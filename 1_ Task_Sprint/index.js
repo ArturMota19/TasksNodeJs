@@ -35,6 +35,34 @@ app.get('/tarefas', (req, res) => {
     })
 })
 
+app.get('/tarefas/:id', (req, res) => {
+    const id = req.params.id
+    const sql = `SELECT * FROM tarefas WHERE id = ${id}`
+    conn.query(sql, function(err, data) {
+        if (err) {
+            console.log(err)
+            return
+        }
+        const tarefa = data[0]
+        console.log(tarefa)
+        res.render('tarefainfo', { tarefa })
+    })
+})
+
+app.get('/tarefas/edit/:id', (req, res) => {
+    const id = req.params.id
+    const sql = `SELECT * FROM tarefas WHERE id = ${id}`
+    conn.query(sql, function(err, data) {
+        if (err) {
+            console.log(err)
+            return
+        }
+        const tarefa = data[0]
+        console.log(tarefa)
+        res.render('editartarefa', { tarefa })
+    })
+})
+
 app.get('/', (req, res) => {
     res.render('home')
 })
@@ -44,6 +72,19 @@ const conn = mysql.createConnection({
     user: 'root',
     password: '',
     database: 'nodemysql'
+})
+
+app.post('/tarefas/editartarefa', (req, res) => {
+    const id = req.body.id
+    const tarefaNome = req.body.nome;
+    const sql = `UPDATE tarefas SET nome = ('${tarefaNome}') WHERE id = ${id}`
+    conn.query(sql, function(err) {
+        if (err) {
+            console.log(err)
+            return
+        }
+        res.redirect('/tarefas')
+    })
 })
 
 conn.connect(function(err) {

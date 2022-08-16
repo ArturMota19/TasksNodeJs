@@ -1,6 +1,7 @@
 const express = require('express')
 const exphbs = require('express-handlebars')
 const app = express()
+const mysql = require('mysql')
 
 app.use(express.urlencoded({ extended: true }))
 app.use(express.json())
@@ -16,16 +17,23 @@ app.post('/', (req, res) => {
     res.redirect("/");
 })
 
-app.get('/:id', (req, res) => {
-    const id = req.params.id
-    return res.json(todoList)
-})
-
 app.get('/', (req, res) => {
     res.render('home', { todoList: todoList })
 })
 
+const conn = mysql.createConnection({
+    host: 'localhost',
+    user: 'root',
+    password: '',
+    database: 'nodemysql'
+})
 
-app.listen(3000, () => {
-    console.log('Task 1 Rodando.')
+conn.connect(function(err) {
+    if (err) {
+        console.log(err)
+    }
+    console.log('MYSQL conectado')
+    app.listen(3000, () => {
+        console.log('Task 1 Rodando.')
+    })
 })

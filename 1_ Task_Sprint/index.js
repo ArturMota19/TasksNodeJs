@@ -9,16 +9,34 @@ app.use(express.json())
 app.engine('handlebars', exphbs.engine())
 app.set('view engine', 'handlebars')
 
-const todoList = []
 
-app.post('/', (req, res) => {
+app.post('/addTarefa', (req, res) => {
     const tarefaNome = req.body.nome;
-    todoList.push(tarefaNome);
-    res.redirect("/");
+    const sql = `INSERT INTO tarefas (nome) VALUES ('${tarefaNome}')`
+    conn.query(sql, function(err) {
+        if (err) {
+            console.log(err)
+            return
+        }
+        res.redirect('/')
+    })
+})
+
+app.get('/tarefas', (req, res) => {
+    const sql = 'SELECT * FROM tarefas'
+    conn.query(sql, function(err, data) {
+        if (err) {
+            console.log(err)
+            return
+        }
+        const tarefas = data
+        console.log(tarefas)
+        res.render('tarefas', { tarefas })
+    })
 })
 
 app.get('/', (req, res) => {
-    res.render('home', { todoList: todoList })
+    res.render('home')
 })
 
 const conn = mysql.createConnection({

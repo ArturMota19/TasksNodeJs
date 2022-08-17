@@ -1,0 +1,5 @@
+<h1>Você está editando sua Todo {{tarefa.nome}}</h1>
+<form action="/editartarefa" method="POST">
+<input type="hidden" name="id" value={{tarefa.id}}>  
+Tarefa: <input type="text" name="nome" value={{tarefa.nome}}> 
+<input type="submit" value="Editar">  

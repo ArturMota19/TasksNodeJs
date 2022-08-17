@@ -3,9 +3,17 @@
   <form action="/addTarefa" method="POST">
   <section class="inputAddTarefa">
       <input class="addTarefa" type="text" name="nome" placeholder="Digite sua tarefa..."> 
+  </section>
+  <section class="selecPrioridade">
+    <h1 class="tituloAddTarefas">Qual a prioridade da tarefa?</h1>
+      <select name="select">
+        <option class="inputPrioridadeBaixa" value="pBaixa" selected>Baixa</option>
+        <option class="inputPrioridadeMedia" value="pMedia">Média</option>
+        <option class="inputPrioridadeAlta" value="pAlta">Alta</option>
+      </select>
+  </section>
     <div class="divAddTarefa">
       <img class="canetaIcon" alt="Caneta icone" src="caneta.png">
       <input class="botaoAddTarefa" type="submit" value=""> 
-    </div>
-  </section>   
+    </div>   
 </main>

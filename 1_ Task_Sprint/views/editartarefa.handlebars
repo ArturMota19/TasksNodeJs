@@ -1,5 +1,20 @@
-<h1>Você está editando sua Todo {{tarefa.nome}}</h1>
-<form action="/editartarefa" method="POST">
-<input type="hidden" name="id" value={{tarefa.id}}>  
-Tarefa: <input type="text" name="nome" value={{tarefa.nome}}> 
-<input type="submit" value="Editar">  
+
+<main class="mainAddTarefas">
+  <h1 class="tituloEditarTarefas">Você está editando sua tarefa: <span>{{tarefa.nome}}</span></h1>
+  <form action="/editartarefa" method="POST">
+  <section class="inputAddTarefa">
+      <input type="hidden" name="id" value={{tarefa.id}}>  
+      <input class="addTarefa" type="text" name="nome" value={{tarefa.nome}} placeholder="Digite sua tarefa..."> 
+  </section>
+  <section class="selecPrioridade">
+    <h1 class="tituloEditarTarefas">Qual a prioridade da tarefa?</h1>
+      <select name="select">
+        <option class="inputPrioridadeBaixa" value="pBaixa" selected>Baixa</option>
+        <option class="inputPrioridadeMedia" value="pMedia">Média</option>
+        <option class="inputPrioridadeAlta" value="pAlta">Alta</option>
+      </select>
+  </section>
+    <div class="divAddTarefa">
+      <input class="botaoEditarTarefa" type="submit" value="Editar"> 
+    </div>   
+</main>  

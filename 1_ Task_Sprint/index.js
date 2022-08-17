@@ -63,6 +63,18 @@ app.get('/tarefas/edit/:id', (req, res) => {
     })
 })
 
+app.post('/tarefas/remove/:id', (req, res) => {
+    const id = req.params.id
+    const sql = `DELETE FROM tarefas WHERE id = ${id}`
+    conn.query(sql, function(err) {
+        if (err) {
+            console.log(err)
+            return
+        }
+        res.redirect('/tarefas')
+    })
+})
+
 app.get('/', (req, res) => {
     res.render('home')
 })
@@ -86,6 +98,7 @@ app.post('/tarefas/editartarefa', (req, res) => {
         res.redirect('/tarefas')
     })
 })
+
 
 conn.connect(function(err) {
     if (err) {

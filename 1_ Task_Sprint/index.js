@@ -23,60 +23,46 @@ app.post('/addTarefa', (req, res) => {
     })
 })
 
-app.get('/tarefas', (req, res) => {
-    const sql = 'SELECT * FROM tarefas'
-    conn.query(sql, function(err, data) {
-        if (err) {
-            console.log(err)
-            return
-        }
-        const tarefas = data
-        console.log(tarefas)
-        res.render('tarefas', { tarefas })
-    })
-})
-
-app.get('/tarefas/:id', (req, res) => {
-    const id = req.params.id
-    const sql = `SELECT * FROM tarefas WHERE id = ${id}`
-    conn.query(sql, function(err, data) {
-        if (err) {
-            console.log(err)
-            return
-        }
-        const tarefa = data[0]
-        console.log(tarefa)
-        res.render('tarefainfo', { tarefa })
-    })
-})
-
-app.get('/tarefas/edit/:id', (req, res) => {
-    const id = req.params.id
-    const sql = `SELECT * FROM tarefas WHERE id = ${id}`
-    conn.query(sql, function(err, data) {
-        if (err) {
-            console.log(err)
-            return
-        }
-        const tarefa = data[0]
-        console.log(tarefa)
-        res.render('editartarefa', { tarefa })
-    })
-})
-
-app.post('/tarefas/remove/:id', (req, res) => {
-    const id = req.params.id
-    const sql = `DELETE FROM tarefas WHERE id = ${id}`
-    conn.query(sql, function(err) {
-        if (err) {
-            console.log(err)
-            return
-        }
-        res.redirect('/tarefas')
-    })
-})
-
 app.get('/', (req, res) => {
+        const sql = 'SELECT * FROM tarefas'
+        conn.query(sql, function(err, data) {
+            if (err) {
+                console.log(err)
+                return
+            }
+            const tarefas = data
+            console.log(tarefas)
+            res.render('tarefas', { tarefas })
+        })
+    })
+    // Rota pra editar tarefa
+app.get('/edit/:id', (req, res) => {
+        const id = req.params.id
+        const sql = `SELECT * FROM tarefas WHERE id = ${id}`
+        conn.query(sql, function(err, data) {
+            if (err) {
+                console.log(err)
+                return
+            }
+            const tarefa = data[0]
+            console.log(tarefa)
+            res.render('editartarefa', { tarefa })
+        })
+    })
+    // Rota pra remover tarefa
+app.post('/remove/:id', (req, res) => {
+        const id = req.params.id
+        const sql = `DELETE FROM tarefas WHERE id = ${id}`
+        conn.query(sql, function(err) {
+            if (err) {
+                console.log(err)
+                return
+            }
+            res.redirect('/')
+        })
+    })
+    // Rota de Home page 
+app.get('/add', (req, res) => {
     res.render('home')
 })
 
@@ -87,7 +73,7 @@ const conn = mysql.createConnection({
     database: 'nodemysql'
 })
 
-app.post('/tarefas/editartarefa', (req, res) => {
+app.post('/editartarefa', (req, res) => {
     const id = req.body.id
     const tarefaNome = req.body.nome;
     const sql = `UPDATE tarefas SET nome = ('${tarefaNome}') WHERE id = ${id}`
@@ -96,7 +82,7 @@ app.post('/tarefas/editartarefa', (req, res) => {
             console.log(err)
             return
         }
-        res.redirect('/tarefas')
+        res.redirect('/')
     })
 })
 

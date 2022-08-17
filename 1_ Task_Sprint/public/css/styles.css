@@ -1,3 +1,106 @@
-h1 {
-    color: red;
+* {
+    padding: 0;
+    text-decoration: none;
+    box-sizing: border-box;
+    margin: 0;
+}
+
+body {
+    background-color: #FFF5EE;
+}
+
+a {
+    color: inherit
+}
+
+
+/* HEADER */
+
+.header {
+    display: flex;
+    width: 100%;
+    height: 3rem;
+    background-color: #483D8B;
+    font-family: 'Roboto', sans-serif;
+    color: #FFF5EE
+}
+
+.navbar {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    margin: 0 auto;
+    gap: 2rem;
+    width: 80%;
+    font-size: 1.2rem;
+    font-weight: 500;
+}
+
+
+/* LISTA DE TODOS */
+
+.mainTarefas {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.titutloTarefas {
+    font-family: 'Montserrat Alternates', sans-serif;
+    padding-top: 1rem;
+    font-size: 3rem;
+    color: #483D8B;
+}
+
+.buttonTarefas {
+    color: black;
+    padding: .5rem .5rem .5rem .5rem;
+    width: 100%;
+    border-radius: 8px;
+    background-color: #FFF5EE;
+    border: 2px solid #483D8B;
+    font-family: 'Roboto', sans-serif;
+    font-size: 1rem;
+    font-weight: 500;
+}
+
+.buttonTarefas:hover {
+    background-color: #483D8B;
+    color: #FFF5EE;
+    transition: 1s;
+    cursor: pointer;
+}
+
+.divEach {
+    width: 80%;
+}
+
+.sectionTarefas {
+    display: flex;
+    padding-bottom: 1rem;
+    width: 100%;
+    justify-content: space-between;
+    font-size: 1.1rem;
+    font-weight: 400;
+    font-family: 'Roboto', sans-serif;
+}
+
+.divFormsTarefas {
+    display: flex;
+    gap: .5rem;
+}
+
+
+/* FOOTER */
+
+.footer {
+    width: 100%;
+    height: 2rem;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    background-color: #483D8B;
+    font-family: 'Roboto', sans-serif;
 }

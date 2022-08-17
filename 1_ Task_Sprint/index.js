@@ -6,6 +6,7 @@ const mysql = require('mysql')
 app.use(express.urlencoded({ extended: true }))
 app.use(express.json())
 app.use(express.static('public'))
+app.use(express.static('public/images'));
 
 app.engine('handlebars', exphbs.engine())
 app.set('view engine', 'handlebars')
@@ -63,7 +64,7 @@ app.post('/remove/:id', (req, res) => {
     })
     // Rota de Home page 
 app.get('/add', (req, res) => {
-    res.render('home')
+    res.render('addtarefas')
 })
 
 const conn = mysql.createConnection({
@@ -85,6 +86,7 @@ app.post('/editartarefa', (req, res) => {
         res.redirect('/')
     })
 })
+
 
 
 conn.connect(function(err) {

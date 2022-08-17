@@ -1,4 +1,11 @@
-<h1>Adicionar ToDos</h1>
-<form action="/addTarefa" method="POST">  
-Tarefa: <input type="text" name="nome"> 
-<input type="submit" value="Submit">  
+<main class="mainAddTarefas">
+  <h1 class="tituloAddTarefas">O que você precisa fazer?</h1>
+  <form action="/addTarefa" method="POST">
+  <section class="inputAddTarefa">
+      <input class="addTarefa" type="text" name="nome" placeholder="Digite sua tarefa..."> 
+    <div class="divAddTarefa">
+      <img class="canetaIcon" alt="Caneta icone" src="caneta.png">
+      <input class="botaoAddTarefa" type="submit" value=""> 
+    </div>
+  </section>   
+</main>

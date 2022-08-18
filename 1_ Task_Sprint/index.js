@@ -14,7 +14,9 @@ app.set('view engine', 'handlebars')
 
 app.post('/addTarefa', (req, res) => {
     const tarefaNome = req.body.nome;
-    const sql = `INSERT INTO tarefas (nome) VALUES ('${tarefaNome}')`
+    const prioridade = req.body.select;
+    console.log(prioridade)
+    const sql = `INSERT INTO tarefas (nome, prioridade) VALUES ('${tarefaNome}','${prioridade}')`
     conn.query(sql, function(err) {
         if (err) {
             console.log(err)
@@ -77,7 +79,8 @@ const conn = mysql.createConnection({
 app.post('/editartarefa', (req, res) => {
     const id = req.body.id
     const tarefaNome = req.body.nome;
-    const sql = `UPDATE tarefas SET nome = ('${tarefaNome}') WHERE id = ${id}`
+    const prioridade = req.body.select;
+    const sql = `UPDATE tarefas SET nome = ('${tarefaNome}'), prioridade = ('${prioridade}') WHERE id = ${id}`
     conn.query(sql, function(err) {
         if (err) {
             console.log(err)

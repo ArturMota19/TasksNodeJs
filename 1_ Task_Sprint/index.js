@@ -6,6 +6,7 @@ const mysql = require('mysql')
 app.use(express.urlencoded({ extended: true }))
 app.use(express.json())
 app.use(express.static('public'))
+app.use(express.static('public/images'));
 
 app.engine('handlebars', exphbs.engine())
 app.set('view engine', 'handlebars')
@@ -13,7 +14,9 @@ app.set('view engine', 'handlebars')
 
 app.post('/addTarefa', (req, res) => {
     const tarefaNome = req.body.nome;
-    const sql = `INSERT INTO tarefas (nome) VALUES ('${tarefaNome}')`
+    const prioridade = req.body.select;
+    console.log(prioridade)
+    const sql = `INSERT INTO tarefas (nome, prioridade) VALUES ('${tarefaNome}','${prioridade}')`
     conn.query(sql, function(err) {
         if (err) {
             console.log(err)
@@ -63,7 +66,7 @@ app.post('/remove/:id', (req, res) => {
     })
     // Rota de Home page 
 app.get('/add', (req, res) => {
-    res.render('home')
+    res.render('addtarefas')
 })
 
 const conn = mysql.createConnection({
@@ -76,7 +79,8 @@ const conn = mysql.createConnection({
 app.post('/editartarefa', (req, res) => {
     const id = req.body.id
     const tarefaNome = req.body.nome;
-    const sql = `UPDATE tarefas SET nome = ('${tarefaNome}') WHERE id = ${id}`
+    const prioridade = req.body.select;
+    const sql = `UPDATE tarefas SET nome = ('${tarefaNome}'), prioridade = ('${prioridade}') WHERE id = ${id}`
     conn.query(sql, function(err) {
         if (err) {
             console.log(err)
@@ -85,6 +89,7 @@ app.post('/editartarefa', (req, res) => {
         res.redirect('/')
     })
 })
+
 
 
 conn.connect(function(err) {

@@ -25,14 +25,25 @@ a {
     color: #FFF5EE
 }
 
-.navbar {
+.navbarEsquerda {
     display: flex;
     justify-content: flex-start;
     align-items: center;
     margin: 0 auto;
     gap: 2rem;
-    width: 80%;
+    width: 40%;
     font-size: 1.2rem;
+    font-weight: 500;
+}
+
+.navbarDireita {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    margin: 0 auto;
+    gap: 2rem;
+    width: 40%;
+    font-size: .8rem;
     font-weight: 500;
 }
 
@@ -220,7 +231,7 @@ select {
     color: #483D8B;
 }
 
-span {
+.nomeEditarTarefa {
     color: #9bffb9;
 }
 
@@ -232,6 +243,33 @@ span {
     height: 3rem;
     cursor: pointer;
     background-color: #6A5ACD;
+}
+
+
+/* PRIORIDADES */
+
+.divTituloPrioridadeAlta {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.nomePrioridadeAlta {
+    color: #FF8C00;
+    font-size: 1rem;
+    font-family: 'Montserrat Alternates', sans-serif;
+}
+
+.nomePrioridadeMedia {
+    color: #FFFF00;
+    font-size: 1rem;
+    font-family: 'Montserrat Alternates', sans-serif;
+}
+
+.nomePrioridadeBaixa {
+    color: #32CD32;
+    font-size: 1rem;
+    font-family: 'Montserrat Alternates', sans-serif;
 }
 
 

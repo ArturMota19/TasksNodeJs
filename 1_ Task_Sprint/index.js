@@ -12,6 +12,8 @@ app.engine('handlebars', exphbs.engine())
 app.set('view engine', 'handlebars')
 
 
+// POST PARA ADICIONAR TAREFA
+
 app.post('/addTarefa', (req, res) => {
     const tarefaNome = req.body.nome;
     const prioridade = req.body.select;
@@ -26,54 +28,95 @@ app.post('/addTarefa', (req, res) => {
     })
 })
 
-app.get('/', (req, res) => {
-        const sql = 'SELECT * FROM tarefas'
-        conn.query(sql, function(err, data) {
-            if (err) {
-                console.log(err)
-                return
-            }
-            const tarefas = data
-            console.log(tarefas)
-            res.render('tarefas', { tarefas })
-        })
-    })
-    // Rota pra editar tarefa
-app.get('/edit/:id', (req, res) => {
-        const id = req.params.id
-        const sql = `SELECT * FROM tarefas WHERE id = ${id}`
-        conn.query(sql, function(err, data) {
-            if (err) {
-                console.log(err)
-                return
-            }
-            const tarefa = data[0]
-            console.log(tarefa)
-            res.render('editartarefa', { tarefa })
-        })
-    })
-    // Rota pra remover tarefa
+// POST PARA REMOVER TAREFA
 app.post('/remove/:id', (req, res) => {
-        const id = req.params.id
-        const sql = `DELETE FROM tarefas WHERE id = ${id}`
-        conn.query(sql, function(err) {
-            if (err) {
-                console.log(err)
-                return
-            }
-            res.redirect('/')
-        })
+    const id = req.params.id
+    const sql = `DELETE FROM tarefas WHERE id = ${id}`
+    conn.query(sql, function(err) {
+        if (err) {
+            console.log(err)
+            return
+        }
+        res.redirect('/')
     })
-    // Rota de Home page 
+})
+
+
+// ROTA PRA PEGAR TODAS AS TAREFAS
+
+app.get('/', (req, res) => {
+    const sql = 'SELECT * FROM tarefas'
+    conn.query(sql, function(err, data) {
+        if (err) {
+            console.log(err)
+            return
+        }
+        const tarefas = data
+        console.log(tarefas)
+        res.render('tarefas', { tarefas })
+    })
+})
+
+// ROTAS PRA PRIORIDADES
+
+app.get('/prioridadealta', (req, res) => {
+    const sql = 'SELECT * FROM tarefas WHERE prioridade = "Alta" '
+    conn.query(sql, function(err, data) {
+        if (err) {
+            console.log(err)
+            return
+        }
+        const tarefas = data
+        console.log(tarefas)
+        res.render('prioridadealta', { tarefas })
+    })
+})
+
+app.get('/prioridademedia', (req, res) => {
+    const sql = 'SELECT * FROM tarefas WHERE prioridade = "Media" '
+    conn.query(sql, function(err, data) {
+        if (err) {
+            console.log(err)
+            return
+        }
+        const tarefas = data
+        console.log(tarefas)
+        res.render('prioridademedia', { tarefas })
+    })
+})
+
+app.get('/prioridadebaixa', (req, res) => {
+    const sql = 'SELECT * FROM tarefas WHERE prioridade = "Baixa" '
+    conn.query(sql, function(err, data) {
+        if (err) {
+            console.log(err)
+            return
+        }
+        const tarefas = data
+        console.log(tarefas)
+        res.render('prioridadebaixa', { tarefas })
+    })
+})
+
+// ROTA PRA ADICIONAR TAREFA
 app.get('/add', (req, res) => {
     res.render('addtarefas')
 })
 
-const conn = mysql.createConnection({
-    host: 'localhost',
-    user: 'root',
-    password: '',
-    database: 'nodemysql'
+// ROTA PRA EDITAR TAREFA
+
+app.get('/edit/:id', (req, res) => {
+    const id = req.params.id
+    const sql = `SELECT * FROM tarefas WHERE id = ${id}`
+    conn.query(sql, function(err, data) {
+        if (err) {
+            console.log(err)
+            return
+        }
+        const tarefa = data[0]
+        console.log(tarefa)
+        res.render('editartarefa', { tarefa })
+    })
 })
 
 app.post('/editartarefa', (req, res) => {
@@ -90,6 +133,14 @@ app.post('/editartarefa', (req, res) => {
     })
 })
 
+// Conexão
+
+const conn = mysql.createConnection({
+    host: 'localhost',
+    user: 'root',
+    password: '',
+    database: 'nodemysql'
+})
 
 
 conn.connect(function(err) {

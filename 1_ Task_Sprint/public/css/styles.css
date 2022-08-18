@@ -66,6 +66,13 @@ a {
     font-weight: 500;
 }
 
+.divNomeTarefas {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+}
+
 .buttonTarefas:hover {
     background-color: #483D8B;
     color: #FFF5EE;

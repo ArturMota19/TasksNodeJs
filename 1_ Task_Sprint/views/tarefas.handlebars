@@ -3,10 +3,15 @@
   <form action="/add">
     <input class="buttonTarefas" type="submit" value="Adicionar Tarefa">
   </form>
+  <section>
+  </section>
   <div class="divEach">
     {{#each tarefas}}
     <section class="sectionTarefas">
-      <h1>{{this.nome}}</h1>
+      <div class="divNomeTarefas">
+        <h1>{{this.nome}}</h1>
+        <h5>{{this.prioridade}}</h5>
+      </div>
       <div class="divFormsTarefas">
         <form action="/edit/{{this.id}}">
           <input type="submit" class="buttonForm" value="Editar">

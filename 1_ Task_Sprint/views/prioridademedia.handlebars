@@ -1,0 +1,26 @@
+<main class="mainTarefas">
+  <div class="divTituloPrioridadeAlta">  
+    <h1 class="tituloTarefas">Lista de ToDos</h1>
+    <h2 class="nomePrioridadeMedia">(Prioridade Media)</h2>
+  </div>
+  <section>
+  </section>
+  <div class="divEach">
+    {{#each tarefas}}
+    <section class="sectionTarefas">
+      <div class="divNomeTarefas">
+        <h1>{{this.nome}}</h1>
+        <h5>{{this.prioridade}}</h5>
+      </div>
+      <div class="divFormsTarefas">
+        <form action="/edit/{{this.id}}">
+          <input type="submit" class="buttonForm" value="Editar">
+        </form>
+        <form action="/remove/{{this.id}}" method="POST">
+          <input type="submit" class="buttonFormRemove" value="Remover">
+        </form>
+      </div>
+    </section>
+    {{/each}}
+  </div>
+</main>

@@ -17,8 +17,18 @@ app.set('view engine', 'handlebars')
 app.post('/addTarefa', (req, res) => {
     const tarefaNome = req.body.nome;
     const prioridade = req.body.select;
-    console.log(prioridade)
-    const sql = `INSERT INTO tarefas (nome, prioridade) VALUES ('${tarefaNome}','${prioridade}')`
+    var Alta = 0
+    var Media = 0
+    var Baixa = 0
+    if (prioridade == 'Alta') {
+        Alta = 1
+    } else if (prioridade == 'Media') {
+        Media = 1
+    } else {
+        Baixa = 1
+    }
+    const sql = `INSERT INTO tarefas (nome, prioridade, prioridadeAlta, prioridadeMedia, prioridadeBaixa) 
+    VALUES ('${tarefaNome}','${prioridade}','${Alta}','${Media}','${Baixa}')`
     conn.query(sql, function(err) {
         if (err) {
             console.log(err)

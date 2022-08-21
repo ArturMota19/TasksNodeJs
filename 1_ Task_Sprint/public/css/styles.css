@@ -97,7 +97,7 @@ a {
 
 .sectionTarefas {
     display: flex;
-    padding-bottom: 1rem;
+    padding-bottom: .6rem;
     width: 100%;
     justify-content: space-between;
     font-size: 1.1rem;
@@ -254,20 +254,38 @@ select {
     align-items: center;
 }
 
+.subPrioridadeAlta {
+    color: #FF8C00;
+    text-shadow: 2px 2px 1px #000000;
+}
+
+.subPrioridadeMedia {
+    color: #FFFF00;
+    text-shadow: 2px 2px 1px #000000;
+}
+
+.subPrioridadeBaixa {
+    color: #32CD32;
+    text-shadow: 2px 2px 1px #000000;
+}
+
 .nomePrioridadeAlta {
     color: #FF8C00;
+    text-shadow: 2px 2px 3px #000000;
     font-size: 1rem;
     font-family: 'Montserrat Alternates', sans-serif;
 }
 
 .nomePrioridadeMedia {
     color: #FFFF00;
+    text-shadow: 2px 2px 3px #000000;
     font-size: 1rem;
     font-family: 'Montserrat Alternates', sans-serif;
 }
 
 .nomePrioridadeBaixa {
     color: #32CD32;
+    text-shadow: 2px 2px 3px #000000;
     font-size: 1rem;
     font-family: 'Montserrat Alternates', sans-serif;
 }

@@ -10,16 +10,13 @@ const Tarefas = db.define('Tarefas', {
         allowNull: false
     },
     prioridadeAlta: {
-        type: DataTypes.BOOLEAN,
-        allowNull: false
+        type: DataTypes.TINYINT,
     },
     prioridadeMedia: {
-        type: DataTypes.BOOLEAN,
-        allowNull: false
+        type: DataTypes.TINYINT,
     },
     prioridadeBaixa: {
-        type: DataTypes.BOOLEAN,
-        allowNull: false
+        type: DataTypes.TINYINT,
     },
 })
 

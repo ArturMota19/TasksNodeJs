@@ -3,6 +3,8 @@ const exphbs = require('express-handlebars')
 const app = express()
 const conn = require('./db/conn')
 
+const Tarefas = require('./models/Tarefas')
+
 app.use(express.urlencoded({ extended: true }))
 app.use(express.json())
 app.use(express.static('public'))
@@ -14,31 +16,30 @@ app.set('view engine', 'handlebars')
 
 // POST PARA ADICIONAR TAREFA
 
-app.post('/addTarefa', (req, res) => {
-    const tarefaNome = req.body.nome;
+app.post('/addTarefa', async(req, res) => {
+    const nome = req.body.nome;
     const prioridade = req.body.select;
-    var Alta = 0
-    var Media = 0
-    var Baixa = 0
+    var prioridadeAlta = 0
+    var prioridadeMedia = 0
+    var prioridadeBaixa = 0
     if (prioridade == 'Alta') {
-        Alta = 1
+        prioridadeAlta = 1
     } else if (prioridade == 'Media') {
-        Media = 1
+        prioridadeMedia = 1
     } else {
-        Baixa = 1
+        prioridadeBaixa = 1
     }
-    const sql = `INSERT INTO tarefas (nome, prioridade, prioridadeAlta, prioridadeMedia, prioridadeBaixa) 
-    VALUES ('${tarefaNome}','${prioridade}','${Alta}','${Media}','${Baixa}')`
-    conn.query(sql, function(err) {
-        if (err) {
-            console.log(err)
-            return
-        }
-        res.redirect('/')
-    })
+    await Tarefas.create({ nome, prioridade, prioridadeAlta, prioridadeMedia, prioridadeBaixa })
+    res.redirect('/add')
+})
+
+// ROTA PRA ADICIONAR TAREFA
+app.get('/add', (req, res) => {
+    res.render('addtarefas')
 })
 
 // POST PARA REMOVER TAREFA
+/*
 app.post('/remove/:id', (req, res) => {
     const id = req.params.id
     const sql = `DELETE FROM tarefas WHERE id = ${id}`
@@ -108,10 +109,6 @@ app.get('/prioridadebaixa', (req, res) => {
     })
 })
 
-// ROTA PRA ADICIONAR TAREFA
-app.get('/add', (req, res) => {
-    res.render('addtarefas')
-})
 
 // ROTA PRA EDITAR TAREFA
 
@@ -142,23 +139,9 @@ app.post('/editartarefa', (req, res) => {
         res.redirect('/')
     })
 })
-
+*/
 // Conexão
 
-const conn = mysql.createConnection({
-    host: 'localhost',
-    user: 'root',
-    password: '',
-    database: 'nodemysql'
-})
-
-
-conn.connect(function(err) {
-    if (err) {
-        console.log(err)
-    }
-    console.log('MYSQL conectado')
-    app.listen(3000, () => {
-        console.log('Task 1 Rodando.')
-    })
-})
+conn.sync().then(() => {
+    app.listen(3000)
+}).catch(err => console.log(err))

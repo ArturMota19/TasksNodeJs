@@ -1,7 +1,7 @@
 const express = require('express')
 const exphbs = require('express-handlebars')
 const app = express()
-const mysql = require('mysql')
+const conn = require('./db/conn')
 
 app.use(express.urlencoded({ extended: true }))
 app.use(express.json())

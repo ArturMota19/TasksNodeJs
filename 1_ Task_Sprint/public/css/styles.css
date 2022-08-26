@@ -25,14 +25,25 @@ a {
     color: #FFF5EE
 }
 
-.navbar {
+.navbarEsquerda {
     display: flex;
     justify-content: flex-start;
     align-items: center;
     margin: 0 auto;
     gap: 2rem;
-    width: 80%;
+    width: 40%;
     font-size: 1.2rem;
+    font-weight: 500;
+}
+
+.navbarDireita {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    margin: 0 auto;
+    gap: 2rem;
+    width: 40%;
+    font-size: .8rem;
     font-weight: 500;
 }
 
@@ -47,7 +58,7 @@ a {
     gap: 1rem;
 }
 
-.titutloTarefas {
+.tituloTarefas {
     font-family: 'Montserrat Alternates', sans-serif;
     padding-top: 1rem;
     font-size: 3rem;
@@ -66,6 +77,13 @@ a {
     font-weight: 500;
 }
 
+.divNomeTarefas {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+}
+
 .buttonTarefas:hover {
     background-color: #483D8B;
     color: #FFF5EE;
@@ -79,7 +97,7 @@ a {
 
 .sectionTarefas {
     display: flex;
-    padding-bottom: 1rem;
+    padding-bottom: .6rem;
     width: 100%;
     justify-content: space-between;
     font-size: 1.1rem;
@@ -90,6 +108,186 @@ a {
 .divFormsTarefas {
     display: flex;
     gap: .5rem;
+}
+
+.buttonForm {
+    color: #FFF5EE;
+    border-radius: 8px;
+    border: inherit;
+    padding: .3rem .8rem .3rem .8rem;
+    background-color: #483D8B;
+    font-family: 'Roboto', sans-serif;
+    font-size: 1rem;
+    font-weight: 500;
+    cursor: pointer;
+}
+
+.buttonForm:hover {
+    background-color: #100c27;
+    transition: 1s;
+}
+
+.buttonFormRemove {
+    color: #FFF5EE;
+    border-radius: 8px;
+    border: inherit;
+    padding: .3rem .8rem .3rem .8rem;
+    background-color: #F53737;
+    font-family: 'Roboto', sans-serif;
+    font-size: 1rem;
+    font-weight: 500;
+    cursor: pointer;
+}
+
+.buttonFormRemove:hover {
+    background-color: #ad0505;
+    transition: 1s;
+}
+
+
+/* ADICIONAR TAREFA*/
+
+.mainAddTarefas {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.tituloAddTarefas {
+    font-family: 'Montserrat Alternates', sans-serif;
+    padding-top: 1rem;
+    font-size: 3rem;
+    color: #483D8B;
+}
+
+.addTarefa {
+    border-radius: 4px;
+    padding: .6rem;
+    border: 1px solid #000000;
+    width: 30rem
+}
+
+.botaoAddTarefa {
+    border-radius: 20px;
+    width: 10rem;
+    height: 3rem;
+    cursor: pointer;
+    background-color: #6A5ACD;
+}
+
+.inputAddTarefa {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+}
+
+input[type="text"] {
+    font-family: 'Roboto', sans-serif;
+    font-size: 1rem;
+    font-weight: 400;
+}
+
+.divAddTarefa {
+    padding-top: 10rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.canetaIcon {
+    width: 1.5rem;
+    position: absolute;
+    pointer-events: none;
+}
+
+.selecPrioridade {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+select {
+    appearance: none;
+    text-align: center;
+    background-color: transparent;
+    border: none;
+    padding: 1rem 0rem 1rem 0rem;
+    margin: 0;
+    width: 30%;
+    margin: 0 auto;
+    font-family: 'Roboto', sans-serif;
+    font-size: 1.5rem;
+    cursor: pointer;
+}
+
+
+/* EDITAR TAREFA */
+
+.tituloEditarTarefas {
+    font-family: 'Montserrat Alternates', sans-serif;
+    padding-top: 1rem;
+    font-size: 2rem;
+    color: #483D8B;
+}
+
+.nomeEditarTarefa {
+    color: #9bffb9;
+}
+
+.botaoEditarTarefa {
+    border-radius: 20px;
+    font-size: 1.5rem;
+    font-family: 'Roboto', sans-serif;
+    width: 10rem;
+    height: 3rem;
+    cursor: pointer;
+    background-color: #6A5ACD;
+}
+
+
+/* PRIORIDADES */
+
+.divTituloPrioridadeAlta {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.subPrioridadeAlta {
+    color: #FF8C00;
+    text-shadow: 2px 2px 1px #000000;
+}
+
+.subPrioridadeMedia {
+    color: #FFFF00;
+    text-shadow: 2px 2px 1px #000000;
+}
+
+.subPrioridadeBaixa {
+    color: #32CD32;
+    text-shadow: 2px 2px 1px #000000;
+}
+
+.nomePrioridadeAlta {
+    color: #FF8C00;
+    text-shadow: 2px 2px 3px #000000;
+    font-size: 1rem;
+    font-family: 'Montserrat Alternates', sans-serif;
+}
+
+.nomePrioridadeMedia {
+    color: #FFFF00;
+    text-shadow: 2px 2px 3px #000000;
+    font-size: 1rem;
+    font-family: 'Montserrat Alternates', sans-serif;
+}
+
+.nomePrioridadeBaixa {
+    color: #32CD32;
+    text-shadow: 2px 2px 3px #000000;
+    font-size: 1rem;
+    font-family: 'Montserrat Alternates', sans-serif;
 }
 
 

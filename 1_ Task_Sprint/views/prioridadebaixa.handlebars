@@ -1,22 +1,15 @@
 <main class="mainTarefas">
-  <h1 class="tituloTarefas">Lista de ToDos</h1>
-  <form action="/add">
-    <input class="buttonTarefas" type="submit" value="Adicionar Tarefa">
-  </form>
+  <div class="divTituloPrioridadeAlta">  
+    <h1 class="tituloTarefas">Lista de ToDos</h1>
+    <h2 class="nomePrioridadeBaixa">(Prioridade Baixa)</h2>
+  </div>
+  <section>
+  </section>
   <div class="divEach">
     {{#each tarefas}}
     <section class="sectionTarefas">
       <div class="divNomeTarefas">
         <h1>{{this.nome}}</h1>
-        {{#if prioridadeAlta}}
-          <h5 class="subPrioridadeAlta">{{this.prioridade}}</h5>
-        {{/if}}
-        {{#if prioridadeMedia}}
-          <h5 class="subPrioridadeMedia">{{this.prioridade}}</h5>
-        {{/if}}
-        {{#if prioridadeBaixa}}
-          <h5 class="subPrioridadeBaixa">{{this.prioridade}}</h5>
-        {{/if}}
       </div>
       <div class="divFormsTarefas">
         <form action="/edit/{{this.id}}">

@@ -30,7 +30,7 @@ app.post('/addTarefa', async(req, res) => {
         prioridadeBaixa = 1
     }
     await Tarefas.create({ nome, prioridade, prioridadeAlta, prioridadeMedia, prioridadeBaixa })
-    res.redirect('/add')
+    res.redirect('/')
 })
 
 // ROTA PRA ADICIONAR TAREFA
@@ -38,108 +38,72 @@ app.get('/add', (req, res) => {
     res.render('addtarefas')
 })
 
-// POST PARA REMOVER TAREFA
-/*
-app.post('/remove/:id', (req, res) => {
-    const id = req.params.id
-    const sql = `DELETE FROM tarefas WHERE id = ${id}`
-    conn.query(sql, function(err) {
-        if (err) {
-            console.log(err)
-            return
-        }
-        res.redirect('/')
-    })
-})
-
-
 // ROTA PRA PEGAR TODAS AS TAREFAS
 
-app.get('/', (req, res) => {
-    const sql = 'SELECT * FROM tarefas'
-    conn.query(sql, function(err, data) {
-        if (err) {
-            console.log(err)
-            return
-        }
-        const tarefas = data
-        console.log(tarefas)
-        res.render('tarefas', { tarefas })
-    })
+app.get('/', async(req, res) => {
+    const tarefas = await Tarefas.findAll({ raw: true })
+    res.render('tarefas', { tarefas: tarefas })
 })
 
 // ROTAS PRA PRIORIDADES
 
-app.get('/prioridadealta', (req, res) => {
-    const sql = 'SELECT * FROM tarefas WHERE prioridade = "Alta" '
-    conn.query(sql, function(err, data) {
-        if (err) {
-            console.log(err)
-            return
-        }
-        const tarefas = data
-        console.log(tarefas)
-        res.render('prioridadealta', { tarefas })
-    })
+app.get('/prioridadealta', async(req, res) => {
+    const tarefas = await Tarefas.findOne({ where: { prioridade: 'Alta' } })
+    res.render('prioridadealta', { tarefas: tarefas })
 })
 
-app.get('/prioridademedia', (req, res) => {
-    const sql = 'SELECT * FROM tarefas WHERE prioridade = "Media" '
-    conn.query(sql, function(err, data) {
-        if (err) {
-            console.log(err)
-            return
-        }
-        const tarefas = data
-        console.log(tarefas)
-        res.render('prioridademedia', { tarefas })
-    })
+app.get('/prioridademedia', async(req, res) => {
+    const tarefas = await Tarefas.findOne({ where: { prioridade: 'Media' } })
+    res.render('prioridademedia', { tarefas: tarefas })
 })
 
-app.get('/prioridadebaixa', (req, res) => {
-    const sql = 'SELECT * FROM tarefas WHERE prioridade = "Baixa" '
-    conn.query(sql, function(err, data) {
-        if (err) {
-            console.log(err)
-            return
-        }
-        const tarefas = data
-        console.log(tarefas)
-        res.render('prioridadebaixa', { tarefas })
-    })
+app.get('/prioridadebaixa', async(req, res) => {
+    const tarefas = await Tarefas.findOne({ where: { prioridade: 'Baixa' } })
+    res.render('prioridadebaixa', { tarefas: tarefas })
 })
-
 
 // ROTA PRA EDITAR TAREFA
 
-app.get('/edit/:id', (req, res) => {
+app.get('/edit/:id', async(req, res) => {
     const id = req.params.id
-    const sql = `SELECT * FROM tarefas WHERE id = ${id}`
-    conn.query(sql, function(err, data) {
-        if (err) {
-            console.log(err)
-            return
-        }
-        const tarefa = data[0]
-        console.log(tarefa)
-        res.render('editartarefa', { tarefa })
-    })
+    const tarefas = await Tarefas.findOne({ raw: true, where: { id: id } })
+    res.render('editartarefa', { tarefas: tarefas })
 })
 
-app.post('/editartarefa', (req, res) => {
+app.post('/editartarefa', async(req, res) => {
     const id = req.body.id
-    const tarefaNome = req.body.nome;
+    const nome = req.body.nome;
     const prioridade = req.body.select;
-    const sql = `UPDATE tarefas SET nome = ('${tarefaNome}'), prioridade = ('${prioridade}') WHERE id = ${id}`
-    conn.query(sql, function(err) {
-        if (err) {
-            console.log(err)
-            return
-        }
-        res.redirect('/')
-    })
+    var prioridadeAlta = 0
+    var prioridadeMedia = 0
+    var prioridadeBaixa = 0
+    if (prioridade == 'Alta') {
+        prioridadeAlta = 1
+    } else if (prioridade == 'Media') {
+        prioridadeMedia = 1
+    } else {
+        prioridadeBaixa = 1
+    }
+    const tarefaDados = {
+        id,
+        nome,
+        prioridade,
+        prioridadeAlta,
+        prioridadeMedia,
+        prioridadeBaixa
+    }
+    await Tarefas.update(tarefaDados, { where: { id: id } })
+    res.redirect('/')
 })
-*/
+
+
+// POST PARA REMOVER TAREFA
+app.post('/remove/:id', async(req, res) => {
+    const id = req.params.id
+    await Tarefas.destroy({ where: { id: id } })
+    res.redirect('/')
+})
+
 // Conexão
 
 conn.sync().then(() => {

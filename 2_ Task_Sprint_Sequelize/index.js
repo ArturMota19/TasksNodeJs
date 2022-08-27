@@ -48,18 +48,18 @@ app.get('/', async(req, res) => {
 // ROTAS PRA PRIORIDADES
 
 app.get('/prioridadealta', async(req, res) => {
-    const tarefas = await Tarefas.findOne({ where: { prioridade: 'Alta' } })
-    res.render('prioridadealta', { tarefas: tarefas })
+    const tarefas = await Tarefas.findAll({ raw: true, where: { prioridade: 'Alta' } })
+    res.render('prioridadealta', { tarefas })
 })
 
 app.get('/prioridademedia', async(req, res) => {
-    const tarefas = await Tarefas.findOne({ where: { prioridade: 'Media' } })
-    res.render('prioridademedia', { tarefas: tarefas })
+    const tarefas = await Tarefas.findAll({ raw: true, where: { prioridade: 'Media' } })
+    res.render('prioridademedia', { tarefas })
 })
 
 app.get('/prioridadebaixa', async(req, res) => {
-    const tarefas = await Tarefas.findOne({ where: { prioridade: 'Baixa' } })
-    res.render('prioridadebaixa', { tarefas: tarefas })
+    const tarefas = await Tarefas.findAll({ raw: true, where: { prioridade: 'Baixa' } })
+    res.render('prioridadebaixa', { tarefas })
 })
 
 // ROTA PRA EDITAR TAREFA

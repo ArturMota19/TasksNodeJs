@@ -7,6 +7,7 @@ module.exports = class TarefasController {
     static async criarTarefas(req, res) {
         const nome = req.body.nome;
         const prioridade = req.body.select;
+        const descTarefa = req.body.descTarefa;
         var prioridadeAlta = 0
         var prioridadeMedia = 0
         var prioridadeBaixa = 0
@@ -20,6 +21,7 @@ module.exports = class TarefasController {
         const tarefas = {
             nome: nome,
             prioridade: prioridade,
+            descTarefa: descTarefa,
             prioridadeAlta: prioridadeAlta,
             prioridadeMedia: prioridadeMedia,
             prioridadeBaixa: prioridadeBaixa
@@ -44,6 +46,11 @@ module.exports = class TarefasController {
         const tarefas = await Tarefas.findAll({ raw: true, where: { prioridade: 'Baixa' } })
         res.render('prioridadebaixa', { tarefas })
     }
+    static async pagIndividual(req, res) {
+        const id = req.params.id
+        const tarefas = await Tarefas.findOne({ raw: true, where: { id: id } })
+        res.render('pagIndividual', { tarefas: tarefas })
+    }
     static async editarId(req, res) {
         const id = req.params.id
         const tarefas = await Tarefas.findOne({ raw: true, where: { id: id } })
@@ -53,6 +60,7 @@ module.exports = class TarefasController {
         const id = req.body.id
         const nome = req.body.nome;
         const prioridade = req.body.select;
+        const descTarefa = req.body.descTarefa;
         var prioridadeAlta = 0
         var prioridadeMedia = 0
         var prioridadeBaixa = 0
@@ -67,6 +75,7 @@ module.exports = class TarefasController {
             id,
             nome,
             prioridade,
+            descTarefa,
             prioridadeAlta,
             prioridadeMedia,
             prioridadeBaixa

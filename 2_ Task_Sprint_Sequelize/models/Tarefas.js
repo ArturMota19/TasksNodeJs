@@ -9,6 +9,10 @@ const Tarefas = db.define('Tarefas', {
         type: DataTypes.STRING,
         allowNull: false
     },
+    descTarefa: {
+        type: DataTypes.STRING,
+        allowNull: false
+    },
     prioridadeAlta: {
         type: DataTypes.TINYINT,
     },

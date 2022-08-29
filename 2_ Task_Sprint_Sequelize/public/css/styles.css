@@ -161,11 +161,40 @@ a {
     color: #483D8B;
 }
 
+.inputSecTarefa {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    justify-content: center;
+    align-items: center;
+}
+
+.descTarefa {
+    border-radius: 4px;
+    padding: 1rem 1rem 2rem 1rem;
+    border: 1px solid #000000;
+    width: 30rem;
+    font-family: 'Montserrat Alternates', sans-serif;
+    font-size: .8rem;
+}
+
+.formDisplay {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
 .addTarefa {
     border-radius: 4px;
     padding: .6rem;
     border: 1px solid #000000;
-    width: 30rem
+    width: 30rem;
+}
+
+::placeholder {
+    font-family: 'Montserrat Alternates', sans-serif;
+    font-size: .8rem;
 }
 
 .botaoAddTarefa {
@@ -219,6 +248,38 @@ select {
     font-family: 'Roboto', sans-serif;
     font-size: 1.5rem;
     cursor: pointer;
+}
+
+
+/* PÁGINA INDIVIDUAL DA TAREFA */
+
+.articleDesc {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding-top: 1rem;
+}
+
+.sectionDesc {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 2rem;
+}
+
+.titlePagInd {
+    font-family: 'Roboto', sans-serif;
+    font-size: 3.5rem;
+}
+
+.descPagInd {
+    width: 600px;
+    text-align: center;
+    word-break: break-all;
+    font-family: 'Roboto', sans-serif;
+    font-size: 1rem;
 }
 
 

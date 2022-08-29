@@ -6,6 +6,10 @@
       <input type="hidden" name="id" value={{tarefas.id}}>  
       <input class="addTarefa" type="text" name="nome" value='{{tarefas.nome}}' placeholder="Digite sua tarefa..."> 
   </section>
+    <section class="inputSecTarefa">
+      <h1 class="tituloAddTarefas">Descreva sua tarefa</h1>
+      <input placeholder="Digite sua descrição..." type="text-area" value='{{tarefas.descTarefa}}' class="descTarefa" name="descTarefa"></input>
+    </section>   
   <section class="selecPrioridade">
     <h1 class="tituloEditarTarefas">Qual a prioridade da tarefa?</h1>
       <select name="select">

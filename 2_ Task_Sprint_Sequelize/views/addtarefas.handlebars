@@ -1,9 +1,13 @@
 <main class="mainAddTarefas">
-  <h1 class="tituloAddTarefas">O que você precisa fazer?</h1>
-  <form action="/addTarefa" method="POST">
-  <section class="inputAddTarefa">
+  <form action="/addTarefa" class="formDisplay" method="POST">
+    <section class="inputSecTarefa">
+      <h1 class="tituloAddTarefas">O que você precisa fazer?</h1>
       <input class="addTarefa" type="text" name="nome" placeholder="Digite sua tarefa..." required> 
-  </section>
+    </section>
+    <section class="inputSecTarefa">
+      <h1 class="tituloAddTarefas">Descreva sua tarefa</h1>
+      <textarea placeholder="Digite sua descrição..." class="descTarefa" name="descTarefa"></textarea>
+    </section>   
   <section class="selecPrioridade">
     <h1 class="tituloAddTarefas">Qual a prioridade da tarefa?</h1>
       <select name="select">
